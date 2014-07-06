@@ -1,0 +1,92 @@
+<header ng-switch on="$location.path().indexOf('/Publicacaos/new') > -1">
+    <h3 ng-switch-when="true">Create a new Publicacao</h3>
+    <h3 ng-switch-when="false">View or edit Publicacao</h3>
+</header>
+<form id="PublicacaoForm" name="PublicacaoForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.titulo.$invalid}">
+        <label for="titulo" class="col-sm-2 control-label">Titulo</label>
+        <div id="tituloControls" class="col-sm-10">
+            <input id="titulo" name="titulo" type="text" class="form-control" ng-model="publicacao.titulo" placeholder="Enter the Publicacao Titulo"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.anoPublicacao.$invalid}">
+        <label for="anoPublicacao" class="col-sm-2 control-label">Ano Publicacao</label>
+        <div id="anoPublicacaoControls" class="col-sm-10">
+            <input id="anoPublicacao" name="anoPublicacao" type="number" class="form-control" ng-model="publicacao.anoPublicacao" placeholder="Enter the Publicacao Ano Publicacao"></input>
+            <span class="help-block error" ng-show="PublicacaoForm.anoPublicacao.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.edicao.$invalid}">
+        <label for="edicao" class="col-sm-2 control-label">Edicao</label>
+        <div id="edicaoControls" class="col-sm-10">
+            <input id="edicao" name="edicao" type="number" class="form-control" ng-model="publicacao.edicao" placeholder="Enter the Publicacao Edicao"></input>
+            <span class="help-block error" ng-show="PublicacaoForm.edicao.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.editora.$invalid}">
+        <label for="editora" class="col-sm-2 control-label">Editora</label>
+        <div id="editoraControls" class="col-sm-10">
+            <input id="editora" name="editora" type="text" class="form-control" ng-model="publicacao.editora" placeholder="Enter the Publicacao Editora"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.tipoPublicacao.$invalid}">
+        <label for="tipoPublicacao" class="col-sm-2 control-label">Tipo Publicacao</label>
+        <div id="tipoPublicacaoControls" class="col-sm-10">
+        <select id="tipoPublicacao" name="tipoPublicacao" class="form-control" ng-model="publicacao.tipoPublicacao" ng-options="t for t in tipoPublicacaoList"  >
+            <option value="">Choose a Tipo Publicacao</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.autoresTexto.$invalid}">
+        <label for="autoresTexto" class="col-sm-2 control-label">Autores Texto</label>
+        <div id="autoresTextoControls" class="col-sm-10">
+            <input id="autoresTexto" name="autoresTexto" type="text" class="form-control" ng-model="publicacao.autoresTexto" placeholder="Enter the Publicacao Autores Texto"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.natureza.$invalid}">
+        <label for="natureza" class="col-sm-2 control-label">Natureza</label>
+        <div id="naturezaControls" class="col-sm-10">
+        <select id="natureza" name="natureza" class="form-control" ng-model="publicacao.natureza" ng-options="n for n in naturezaList"  >
+            <option value="">Choose a Natureza</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.alcance.$invalid}">
+        <label for="alcance" class="col-sm-2 control-label">Alcance</label>
+        <div id="alcanceControls" class="col-sm-10">
+        <select id="alcance" name="alcance" class="form-control" ng-model="publicacao.alcance" ng-options="a for a in alcanceList"  >
+            <option value="">Choose a Alcance</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PublicacaoForm.publicada.$invalid}">
+        <label for="publicada" class="col-sm-2 control-label">Publicada</label>
+        <div id="publicadaControls" class="col-sm-10">
+        <select id="publicada" name="publicada" class="form-control" ng-model="publicacao.publicada" ng-options="p for p in publicadaList"  >
+            <option value="">Choose a Publicada</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="savePublicacao" name="savePublicacao" class="btn btn-primary" ng-disabled="isClean() || PublicacaoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deletePublicacao" name="deletePublicacao" class="btn btn-danger" ng-show="publicacao.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

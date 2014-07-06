@@ -1,0 +1,138 @@
+<div class="form-horizontal">
+    <h3>Create a new Publicacao</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Publicacaos/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Publicacaos</h3>
+    <form id="PublicacaoSearch" class="form-horizontal">
+        
+
+    <div class="form-group">
+        <label for="titulo" class="col-sm-2 control-label">Titulo</label>
+        <div class="col-sm-10">
+            <input id="titulo" name="titulo" class="form-control" type="text" ng-model="search.titulo" placeholder="Enter the Publicacao Titulo"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="anoPublicacao" class="col-sm-2 control-label">Ano Publicacao</label>
+        <div class="col-sm-10">
+            <input id="anoPublicacao" name="anoPublicacao" class="form-control" type="text" ng-model="search.anoPublicacao" placeholder="Enter the Publicacao Ano Publicacao"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="edicao" class="col-sm-2 control-label">Edicao</label>
+        <div class="col-sm-10">
+            <input id="edicao" name="edicao" class="form-control" type="text" ng-model="search.edicao" placeholder="Enter the Publicacao Edicao"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="editora" class="col-sm-2 control-label">Editora</label>
+        <div class="col-sm-10">
+            <input id="editora" name="editora" class="form-control" type="text" ng-model="search.editora" placeholder="Enter the Publicacao Editora"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tipoPublicacao" class="col-sm-2 control-label">Tipo Publicacao</label>
+        <div class="col-sm-10">
+            <select id="tipoPublicacao" name="tipoPublicacao" class="form-control" ng-model="search.tipoPublicacao" ng-options="t as t for t in tipoPublicacaoList">
+                <option value="">Choose a Tipo Publicacao</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="autoresTexto" class="col-sm-2 control-label">Autores Texto</label>
+        <div class="col-sm-10">
+            <input id="autoresTexto" name="autoresTexto" class="form-control" type="text" ng-model="search.autoresTexto" placeholder="Enter the Publicacao Autores Texto"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="natureza" class="col-sm-2 control-label">Natureza</label>
+        <div class="col-sm-10">
+            <select id="natureza" name="natureza" class="form-control" ng-model="search.natureza" ng-options="n as n for n in naturezaList">
+                <option value="">Choose a Natureza</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="alcance" class="col-sm-2 control-label">Alcance</label>
+        <div class="col-sm-10">
+            <select id="alcance" name="alcance" class="form-control" ng-model="search.alcance" ng-options="a as a for a in alcanceList">
+                <option value="">Choose a Alcance</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="publicada" class="col-sm-2 control-label">Publicada</label>
+        <div class="col-sm-10">
+            <select id="publicada" name="publicada" class="form-control" ng-model="search.publicada" ng-options="p as p for p in publicadaList">
+                <option value="">Choose a Publicada</option>
+            </select>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Ano Publicacao</th>
+                    <th>Edicao</th>
+                    <th>Editora</th>
+                    <th>Tipo Publicacao</th>
+                    <th>Autores Texto</th>
+                    <th>Natureza</th>
+                    <th>Alcance</th>
+                    <th>Publicada</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.titulo}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.anoPublicacao}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.edicao}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.editora}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.tipoPublicacao}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.autoresTexto}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.natureza}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.alcance}}</a></td>
+                    <td><a href="#/Publicacaos/edit/{{result.id}}">{{result.publicada}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">??</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">??</a>
+        </li>
+    </ul>
+
+</div>
