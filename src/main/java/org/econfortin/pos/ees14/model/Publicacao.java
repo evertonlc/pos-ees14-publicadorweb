@@ -1,27 +1,27 @@
 package org.econfortin.pos.ees14.model;
 
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Table;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Version;
-
-import java.lang.Override;
-import javax.xml.bind.annotation.XmlRootElement;@Entity
+import javax.xml.bind.annotation.XmlRootElement;
+@Entity
 @Table(name = "PUBLICACAO")
 @XmlRootElement
 public class Publicacao implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)

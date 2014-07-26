@@ -16,6 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Autor implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)
